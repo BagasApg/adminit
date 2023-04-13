@@ -78,39 +78,17 @@ while ($row = mysqli_fetch_assoc($result)) {
         </div>
     </div>
 
+
     <script>
-        const colors = [
-            "red",
-            "green",
-            "blue",
-            "#264653",
-            "#2a9d8f",
-            "#e9c46a",
-            "#f4a261",
-            "#e76f51"
-        ];
-
-
-        id = 0
-        setInterval(() => {
-            if (id === colors.length) {
-                id = 0
-            }
-
-            $('.navbar a.user').css('color', colors[Math.floor(Math.random() * colors.length) + 1])
-
-            // $('link').attr("href", "style1.css")
-            id++
-        }, 1000);
-
+        <?= $navbar_js ?>
         $('.shadow-bg').click(function() {
-            $('.shadow-bg').hide()
+            $('.shadow-bg').toggleClass('d-none')
             $('.sidebar').toggleClass('open')
 
         });
 
         function openSidebar() {
-            $('.shadow-bg').show()
+            $('.shadow-bg').toggleClass('d-none')
             // $('.sidebar').toggle('.sidebar-close')
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')

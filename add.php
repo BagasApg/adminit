@@ -21,7 +21,6 @@ if (isset($_POST["submit"])) {
         header("Location: main.php");
     } else {
         $_POST["alert"] = "Fill all the form!";
-
     }
 }
 
@@ -75,7 +74,7 @@ $random = $randoms[rand(1, 3)]
 
 <body>
     <?= $navbar ?>
-    <?= $sidebar?>
+    <?= $sidebar ?>
     <div class="wrapper">
         <div class="add-container">
             <div class="header">
@@ -86,23 +85,23 @@ $random = $randoms[rand(1, 3)]
                 <form action="add.php" method="POST">
                     <div class="label-input">
                         <label for="name">Name</label>
-                        <input type="text" placeholder="<?= $random["name"] ?>" name="name" id="name" >
+                        <input type="text" placeholder="<?= $random["name"] ?>" name="name" id="name">
                     </div>
                     <div class="label-input">
                         <label for="username">Username</label>
-                        <input type="text" placeholder="<?= $random["username"] ?>" name="username" id="username" >
+                        <input type="text" placeholder="<?= $random["username"] ?>" name="username" id="username">
                     </div>
                     <div class="label-input">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" >
+                        <input type="password" name="password" id="password">
                     </div>
                     <div class="label-input">
                         <label for="confirmpassword">Confirm Password</label>
-                        <input type="password" name="confirmpassword" id="confirmpassword" >
+                        <input type="password" name="confirmpassword" id="confirmpassword">
                     </div>
                     <div class="label-input">
                         <label for="image">Image</label>
-                        <input type="text" placeholder="<?= $random["image"] ?>" name="image" id="image" >
+                        <input type="text" placeholder="<?= $random["image"] ?>" name="image" id="image">
                     </div>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
@@ -119,34 +118,17 @@ $random = $randoms[rand(1, 3)]
         </div>
     </div>
     <script>
-        const colors = [
-            "red",
-            "green",
-            "blue",
-            "#264653",
-            "#2a9d8f",
-            "#e9c46a",
-            "#f4a261",
-            "#e76f51"
-        ];
-        id = 0
-        setInterval(() => {
-            if (id === colors.length) {
-                id = 0
-            }
+        <?= $navbar_js ?>
 
-            $('.navbar a.user').css('color', colors[Math.floor(Math.random() * colors.length) + 1])
-            id++
-        }, 1000);
 
         $('.shadow-bg').click(function() {
-            $('.shadow-bg').hide()
+            $('.shadow-bg').toggleClass('d-none')
             $('.sidebar').toggleClass('open')
 
         });
 
         function openSidebar() {
-            $('.shadow-bg').show()
+            $('.shadow-bg').toggleClass('d-none')
             // $('.sidebar').toggle('.sidebar-close')
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')

@@ -72,49 +72,36 @@ $random = $randoms[rand(1, 3)]
 
 <body>
     <?= $navbar ?>
-    <?= $sidebar?>
+    <?= $sidebar ?>
     <div class="wrapper">
         <div class="add-container">
-            <div class="header">
-                <h2>Details</h2>
+            <div class="details-container">
+                <div class="header">
+                    <h2>Details</h2>
+                </div>
+                <div class="details-content">
+                    <p>user</p>
+                    <p>******</p>
+                    <div class="details-buttons">
+                        <a class="btn" href="main.php">Back</a>
+                    </div>
+                </div>
             </div>
-            <div class="detail-content">
-                <h5>user</h5>
-                <h5>******</h5>
-
-            </div>
-            
         </div>
     </div>
     <script>
-        const colors = [
-            "red",
-            "green",
-            "blue",
-            "#264653",
-            "#2a9d8f",
-            "#e9c46a",
-            "#f4a261",
-            "#e76f51"
-        ];
-        id = 0
-        setInterval(() => {
-            if (id === colors.length) {
-                id = 0
-            }
+        <?= $navbar_js ?>
 
-            $('.navbar a.user').css('color', colors[Math.floor(Math.random() * colors.length) + 1])
-            id++
-        }, 1000);
+
 
         $('.shadow-bg').click(function() {
-            $('.shadow-bg').hide()
+            $('.shadow-bg').toggleClass('d-none')
             $('.sidebar').toggleClass('open')
 
         });
 
         function openSidebar() {
-            $('.shadow-bg').show()
+            $('.shadow-bg').toggleClass('d-none')
             // $('.sidebar').toggle('.sidebar-close')
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')
