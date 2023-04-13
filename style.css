@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+* {
+  font-family: "Quicksand";
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffe8e6;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar header {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 30px 18px 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: salmon;
+  text-decoration: none;
+  position: fixed;
+  top: 0;
+  z-index: 300;
+}
+
+.navbar a,
+.navbar p {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a.user {
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.navbar a.logo {
+  font-size: 20px;
+}
+
+.navbar p {
+  font-size: 16px;
+  color: white;
+  margin: 0;
+}
+
+.navbar a.logout {
+  font-size: 16px;
+}
+
+.sidebar {
+  margin-top: 11px;
+  padding: 10px 0 0 10px;
+  width: 200px;
+  height: 110%;
+  background-color: white;
+  position: fixed;
+  right: -200px;
+  box-sizing: border-box;
+  z-index: 20;
+  transition: all 0.5s ease;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 15px;
+  padding-top: 10px;
+  list-style: none;
+}
+.sidebar ul li {
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #999;
+}
+
+.sidebar ul a {
+  color: black;
+  text-decoration: none;
+}
+
+.sidebar ul a:hover {
+  color: salmon;
+}
+
+.open {
+  transition: all 0.6s ease;
+  right: 0;
+}
+
+.shadow-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(0.5px);
+  z-index: 5;
+}
+
+.d-none {
+  display: none;
+}
+
+.container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px 20px;
+}
+
+#submit {
+  border: none;
+  padding: 4px 12px;
+  background-color: salmon;
+  color: white;
+  border-radius: 5px;
+}
+
+#submit:hover {
+  background-color: salmon;
+}
+
+#submit:active {
+  background-color: rgb(255, 181, 181);
+  color: black;
+}
+
+.btn {
+  border: none;
+  padding: 4px 12px;
+  background-color: #c06258;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: salmon;
+}
+
+.btn:active {
+  background-color: rgb(255, 181, 181);
+  color: black;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: black;
+  padding: 3px 11px;
+  border: 1px solid salmon;
+}
+
+.btn-secondary:hover {
+  color: white;
+}
+
+.style-table a {
+  color: black;
+  margin-left: 5px;
+  border: none;
+  padding: 2px 12px;
+  background-color: #e7f2f8;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.style-table a:hover {
+  background-color: #a3dfff;
+}
+
+.style-table a:active {
+  background-color: #00a6ff;
+  color: white;
+}
+
+.style-table {
+  border-collapse: collapse;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.style-table thead tr {
+  color: white;
+  background-color: #c6655b;
+}
+
+.style-table tbody tr {
+  background-color: #fff4f1;
+  border-bottom: 2.5px solid #ffe8e6;
+}
+
+.style-table th,
+.style-table td {
+  padding: 12px 30px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0.5px);
+  z-index: 5;
+}
+
+.window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 100px;
+  max-width: 250px;
+  background-color: white;
+  padding: 4rem;
+  border: 5px solid salmon;
+  border-radius: 10px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  text-align: center;
+  padding-top: 35px;
+  padding-bottom: 100px;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons a {
+  font-size: 1.1rem;
+}
+
+.modal-content h1 {
+  margin: 0px;
+}
+
+.modal-content p {
+  margin: 10px 0 30px 0;
+}
+
+/* add.php */
+
+.wrapper {
+  padding: 0;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add-container {
+  margin-top: 35px;
+  border: 5px solid #fa8072;
+  border-radius: 10px;
+  background-color: white;
+  width: 35%;
+}
+
+.add-container h2 {
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+
+.add-form {
+  padding: 5px 25px 15px 25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-form label {
+  font-size: 18px;
+}
+
+.add-form input {
+  width: 98%;
+  height: 30px;
+}
+
+.add-form .label-input {
+  padding: 15px 0 0 0;
+  display: block;
+}
+
+.add-form .label-input:nth-child(1) {
+  padding-top: 15px;
+}
+
+.add-form .add-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 5px 0;
+}
