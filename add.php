@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 require 'ui.php';
-session_start();
 
 if (isset($_POST["submit"])) {
     $continue = true;

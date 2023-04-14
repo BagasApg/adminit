@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 require 'ui.php';
-session_start();
+$_SESSION["user"] = "bagasAp";
 
 if (isset($_POST["submit"])) {
     $continue = true;
@@ -22,38 +22,8 @@ if (isset($_POST["submit"])) {
     }
 }
 
-$randoms = [
-    0 => [
-        "name" => "Alexander Christie",
-        "username" => "alexhris",
-        "image" => "alexander.jpg"
-    ],
-    1 => [
-        "name" => "Brian Rich",
-        "username" => "richbrian",
-        "image" => "brian.jpg"
-    ],
-    2 => [
-        "name" => "Clair Ristyan",
-        "username" =>
-        "clairtoexplain",
-        "image" => "clair.jpg"
-    ],
-    3 => [
-        "name" => "Dan Augh",
-        "username" =>
-        "danausir",
-        "image" => "dan.jpg"
-    ],
-    4 => [
-        "name" => "Evan Anodd",
-        "username" =>
-        "literaldice",
-        "image" => "evan.jpg"
-    ],
-];
 
-$random = $randoms[rand(1, 3)]
+
 
 ?>
 
@@ -71,7 +41,7 @@ $random = $randoms[rand(1, 3)]
 </head>
 
 <body>
-    <?= $navbar ?>
+
     <?= $sidebar ?>
     <div class="wrapper">
         <div class="add-container">
@@ -80,7 +50,7 @@ $random = $randoms[rand(1, 3)]
                     <h2>Details</h2>
                 </div>
                 <div class="details-content">
-                    <p>user</p>
+                    <p><?=$_SESSION["user"]?></p>
                     <p>******</p>
                     <div class="details-buttons">
                         <a class="btn" href="main.php">Back</a>

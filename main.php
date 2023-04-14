@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 require 'ui.php';
-session_start();
 
 $result = mysqli_query($conn, "SELECT * FROM murid");
 $murid = [];

@@ -2,7 +2,6 @@
 require 'config.php';
 require 'ui.php';
 
-session_start();
 
 if (isset($_POST["update"])) {
     $continue = true;
