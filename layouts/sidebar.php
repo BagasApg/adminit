@@ -1,6 +1,6 @@
 <?php
 
-    $sidebar = <<<EOD
+$sidebar = <<<EOD
     <div class="sidebar-container">
         <div class="shadow-container">
 
@@ -9,7 +9,7 @@
                     <a href="details.php">
                         <li>Details</li>
                     </a>
-                    <a href="#">
+                    <a onclick="closeNavbar()" href="logout.php">
                         <li>Logout</li>
                     </a>
                 </ul>
@@ -18,6 +18,5 @@
             </div>
         </div>
     </div>
+    
     EOD;
-
-?>

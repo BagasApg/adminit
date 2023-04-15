@@ -1,61 +1,29 @@
 <?php
 require 'config.php';
-require 'ui.php';
 
 if (isset($_POST["submit"])) {
     $continue = true;
-    $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
-    $image = $_POST["image"];
+    $access = $_POST["access"];
 
-    if ($password != $confirmPassword) {
+    if ($confirmPassword !== $password) {
         $continue = false;
     }
 
-    if (!empty($name) && !empty($username) && !empty($password) && !empty($confirmPassword) && !empty($image) && $continue) {
-        $result = mysqli_query($conn, "INSERT INTO murid(name,username,password,image) VALUES('$name','$username','$password','$image')");
-        header("Location: main.php");
+    if (!empty($username) && !empty($password) && !empty($confirmPassword) && !empty($access) && $continue) {
+        $result = mysqli_query($conn, "INSERT INTO admin(username,password,access) VALUES('$username','$password','$access')");
+        // $_POST["alert"] = "Created!"
+        header("Location: login.php");
     } else if (!$continue) {
         $_POST["alert"] = "Password doesn't match!";
     } else {
-        $_POST["alert"] = "Fill all the form!";
+        $_POST["alert"] = "Fill the blank form!";
     }
+} else {
+    session_destroy();
 }
-
-$randoms = [
-    0 => [
-        "name" => "Alexander Christie",
-        "username" => "alexhris",
-        "image" => "alexander.jpg"
-    ],
-    1 => [
-        "name" => "Brian Rich",
-        "username" => "richbrian",
-        "image" => "brian.jpg"
-    ],
-    2 => [
-        "name" => "Clair Ristyan",
-        "username" =>
-        "clairtoexplain",
-        "image" => "clair.jpg"
-    ],
-    3 => [
-        "name" => "Dan Augh",
-        "username" =>
-        "danausir",
-        "image" => "dan.jpg"
-    ],
-    4 => [
-        "name" => "Evan Anodd",
-        "username" =>
-        "literaldice",
-        "image" => "evan.jpg"
-    ],
-];
-
-$random = $randoms[rand(1, 3)]
 
 ?>
 
@@ -69,27 +37,22 @@ $random = $randoms[rand(1, 3)]
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Add User</title>
+    <title>Register</title>
 </head>
 
 <body>
-    <?= $navbar ?>
-    <?= $sidebar ?>
-    <div class="wrapper">
-        <div class="add-container">
+    <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:absolute; margin:0;">
+        <div class="login-container" style="margin:0;">
             <div class="header">
-                <h2>Add User</h2>
-
+                <h2>Register to Adminit</h2>
+                <p>Start your organized life, now!</p>
             </div>
             <div class="add-form">
-                <form action="add.php" method="POST">
-                    <div class="label-input">
-                        <label for="name">Name</label>
-                        <input type="text" placeholder="<?= $random["name"] ?>" name="name" id="name" class="form-input">
-                    </div>
+                <form action="register.php" method="POST">
+
                     <div class="label-input">
                         <label for="username">Username</label>
-                        <input type="text" placeholder="<?= $random["username"] ?>" name="username" id="username" class="form-input">
+                        <input type="text" name="username" id="username" class="form-input">
                     </div>
                     <div class="label-input">
                         <label for="password">Password</label>
@@ -99,19 +62,24 @@ $random = $randoms[rand(1, 3)]
                         <label for="confirmpassword">Confirm Password</label>
                         <input type="password" name="confirmpassword" id="confirmpassword" class="form-input">
                     </div>
-                    <div class="label-input">
-                        <label for="image">Image</label>
-                        <input type="text" placeholder="<?= $random["image"] ?>" name="image" id="image" class="form-input">
+                    <div class="label-radio">
+                        <label for="access" style="display:block">Has access?</label>
+                        <input type="radio" name="access" id="yes" value="true">
+                        <label for="yes">Yes</label>
+                        <input type="radio" name="access" id="no" value="false">
+                        <label for="no">No</label>
                     </div>
+
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
                                 echo $_POST['alert'];
                             } ?></p>
                     </div>
                     <div class="add-buttons">
-                        <a class="btn" href="main.php">Back</a>
 
-                        <button type="input" name="submit" class="btn" style="margin: 0 0 0 auto; display: block">Add</button>
+                        <a class="btn" href="login.php">Login</a>
+
+                        <button type="input" name="submit" class="btn">Register</button>
                     </div>
                 </form>
             </div>

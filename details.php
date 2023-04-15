@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 require 'ui.php';
-$_SESSION["user"] = "bagasAp";
 
 if (isset($_POST["submit"])) {
     $continue = true;
@@ -42,6 +41,7 @@ if (isset($_POST["submit"])) {
 
 <body>
 
+    <?= $navbar ?>
     <?= $sidebar ?>
     <div class="wrapper">
         <div class="add-container">
@@ -50,8 +50,9 @@ if (isset($_POST["submit"])) {
                     <h2>Details</h2>
                 </div>
                 <div class="details-content">
-                    <p><?=$_SESSION["user"]?></p>
-                    <p>******</p>
+                    <p><?= $_SESSION["user"] ?></p>
+                    <p><?= $_SESSION["password"] ?></p>
+                    <p><?= $_SESSION["access"] ?></p>
                     <div class="details-buttons">
                         <a class="btn" href="main.php">Back</a>
                     </div>

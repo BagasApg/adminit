@@ -2,10 +2,15 @@
 require 'config.php';
 require 'ui.php';
 
+
 $result = mysqli_query($conn, "SELECT * FROM murid");
 $murid = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $murid[] = $row;
+}
+
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
 }
 ?>
 
@@ -37,8 +42,16 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Username</th>
-                        <th>Password</th>
+                        <?php
+
+                        if ($_SESSION["access"] == "true") {
+                            echo "<th>Username</th>";
+                            echo "<th>Password</th>";
+                        }
+
+                        ?>
+
+
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -49,8 +62,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <tr>
                             <td class="text-center"><?= $row["id"] ?></td>
                             <td><?= $row["name"] ?></td>
-                            <td><?= $row["username"] ?></td>
-                            <td><?= $row["password"] ?></td>
+                            <?php
+                            if ($_SESSION["access"] == "true") {
+                                echo "<td>{$row["username"]}</td>";
+                                echo "<td>{$row["password"]}</td>";
+                            }
+                            ?>
+
                             <td class="text-center"><?= $row["image"] ?></td>
                             <td class="text-center">
                                 <a class="btn" href="edit.php?id=<?= $row["id"] ?>">Edit</a><a class="btn" onclick="openModal(<?= $row['id'] ?>)">Delete</a>
@@ -85,6 +103,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             $('.sidebar').toggleClass('open')
 
         });
+
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')

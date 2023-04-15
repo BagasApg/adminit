@@ -53,6 +53,7 @@ body::-webkit-scrollbar {
   font-size: 16px;
 }
 
+
 .sidebar {
   margin-top: 11px;
   padding: 10px 0 0 10px;
@@ -281,6 +282,12 @@ body::-webkit-scrollbar {
   text-align: center;
   margin: 15px 0 0 0;
 }
+.add-container p{
+  font-size: 18px;
+  text-align: center;
+  margin: 5px 0 0 0;
+  padding: 0 45px 0 45px;
+}
 
 .add-form {
   padding: 5px 25px 15px 25px;
@@ -288,11 +295,15 @@ body::-webkit-scrollbar {
   box-sizing: border-box;
 }
 
+.add-form p {
+  color: red;
+}
+
 .add-form label {
   font-size: 18px;
 }
 
-.add-form input {
+.form-input {
   width: 98%;
   height: 30px;
 }
@@ -312,11 +323,27 @@ body::-webkit-scrollbar {
   padding: 10px 0 5px 0;
 }
 
+.label-radio {
+  padding-top: 25px;
+}
+
+
+
 /* details.php */
 
 .details-container {
   padding: 5px 25px 20px 25px;
   text-align: center;
+}
+.details-container p{
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0 0 0;
+  padding: 0 45px 0 45px;
+}
+
+.details-container h2{
+  margin-bottom: 10px;
 }
 
 .details-content {
@@ -324,6 +351,28 @@ body::-webkit-scrollbar {
 }
 
 .details-buttons {
+  margin-top: 10px;
   display: flex;
   justify-content: start;
+}
+
+/* login.php */
+
+.login-container {
+  margin-top: 35px;
+  border: 5px solid #fa8072;
+  border-radius: 10px;
+  background-color: white;
+  width: 35%;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+.login-container p{
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0 0 0;
+  padding: 0 45px 0 45px;
 }
