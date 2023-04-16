@@ -1,6 +1,10 @@
 <?php
 require 'config.php';
 
+if (isset($_SESSION["request"])) {
+    dd($_SESSION["request"]);
+}
+
 if (isset($_POST["submit"])) {
     $continue = true;
     $username = $_POST["username"];

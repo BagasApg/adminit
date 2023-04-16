@@ -1,6 +1,5 @@
 <?php
 
-$page;
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 }

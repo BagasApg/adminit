@@ -34,7 +34,9 @@ if (isset($_GET["id"])) {
     $password = $user_data["password"];
 }
 
-
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+}
 
 ?>
 

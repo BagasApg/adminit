@@ -1,5 +1,15 @@
 <?php
 
+if (isset($_SESSION["access"]) && $_SESSION["access"] == "true") {
+    $access = <<<EOD
+                <a onclick="closeNavbar()" href="adminregister.php">
+                    <li>Add Admin</li>
+                </a>
+    EOD;
+} else {
+    $access = "";
+}
+
 $sidebar = <<<EOD
     <div class="sidebar-container">
         <div class="shadow-container">
@@ -9,6 +19,7 @@ $sidebar = <<<EOD
                     <a href="details.php">
                         <li>Details</li>
                     </a>
+                    $access
                     <a onclick="closeNavbar()" href="logout.php">
                         <li>Logout</li>
                     </a>
@@ -19,4 +30,4 @@ $sidebar = <<<EOD
         </div>
     </div>
     
-    EOD;
+EOD;

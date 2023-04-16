@@ -43,8 +43,18 @@ if (isset($_POST["submit"])) {
 <body>
     <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:absolute; margin:0;">
         <div class="login-container" style="margin:0;">
+
             <div class="header">
-                <h2>Register to Adminit</h2>
+                <?php
+
+                if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
+                    $registerPage = "Register New Admin";
+                } else {
+                    $registerPage = "Register to Adminit";
+                }
+
+                ?>
+                <h2><?= $registerPage ?></h2>
                 <p>Start your organized life, now!</p>
             </div>
             <div class="add-form">
@@ -62,14 +72,23 @@ if (isset($_POST["submit"])) {
                         <label for="confirmpassword">Confirm Password</label>
                         <input type="password" name="confirmpassword" id="confirmpassword" class="form-input">
                     </div>
-                    <div class="label-radio">
-                        <label for="access" style="display:block">Has access?</label>
-                        <input type="radio" name="access" id="yes" value="true">
-                        <label for="yes">Yes</label>
-                        <input type="radio" name="access" id="no" value="false">
-                        <label for="no">No</label>
-                    </div>
+                    <?php
 
+                    if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") :
+
+                    ?>
+                        <div class="label-radio">
+                            <label for="access" style="display:block">Has access?</label>
+                            <input type="radio" name="access" id="yes" value="true">
+                            <label for="yes">Yes</label>
+                            <input type="radio" name="access" id="no" value="false">
+                            <label for="no">No</label>
+                        </div>
+                    <?php
+
+                    endif;
+
+                    ?>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
                                 echo $_POST['alert'];
