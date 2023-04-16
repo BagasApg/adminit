@@ -55,8 +55,12 @@ $randoms = [
     ],
 ];
 
-$random = $randoms[rand(1, 3)]
+$random = $randoms[rand(1, 3)];
 
+if ($_SESSION["page"] != "Add User") {
+    $_SESSION["page"] = "Add User";
+    header("Location: add.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +73,7 @@ $random = $randoms[rand(1, 3)]
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Add User</title>
+    <title>Adminit | Add User</title>
 </head>
 
 <body>

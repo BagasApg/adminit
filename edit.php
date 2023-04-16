@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 require 'ui.php';
-
+$page = "Details";
 
 if (isset($_POST["update"])) {
     $continue = true;
@@ -48,7 +48,7 @@ if (isset($_GET["id"])) {
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Edit</title>
+    <title>Adminit | Edit User</title>
 </head>
 
 <body>

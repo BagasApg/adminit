@@ -37,6 +37,8 @@ body::-webkit-scrollbar {
 .navbar a.user {
   font-size: 17px;
   cursor: pointer;
+  /* animation: geming 4s infinite;
+  animation-iteration-count: infinite; */
 }
 
 .navbar a.logo {
@@ -49,8 +51,39 @@ body::-webkit-scrollbar {
   margin: 0;
 }
 
-.navbar a.logout {
-  font-size: 16px;
+
+
+
+
+@keyframes geming {
+  0%{
+    color: white;
+  }
+  12.5% {
+    color:red;
+  }
+  25% {
+    color: green;
+  }
+  37.5%{
+    color: blue;
+  }
+  50%{
+    color: #264653;
+  }
+  62.5% {
+    color: #2a9d8f;
+  }
+  75%{
+    color: #e9c46a;
+  }
+  87.5%{
+    color: #f4a261;
+  }
+  100%{
+    color: white;
+  }
+  
 }
 
 
@@ -234,7 +267,6 @@ body::-webkit-scrollbar {
   max-width: 250px;
   background-color: white;
   padding: 4rem;
-  border: 5px solid salmon;
   border-radius: 10px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
@@ -303,7 +335,7 @@ body::-webkit-scrollbar {
   font-size: 18px;
 }
 
-.form-input {
+.add-form input {
   width: 98%;
   height: 30px;
 }
@@ -324,7 +356,12 @@ body::-webkit-scrollbar {
 }
 
 .label-radio {
-  padding-top: 25px;
+  padding-top: 10px;
+}
+
+input#yes, input#no {
+  width: 13px !important;
+  height: 13px !important;
 }
 
 
@@ -334,12 +371,14 @@ body::-webkit-scrollbar {
 .details-container {
   padding: 5px 25px 20px 25px;
   text-align: center;
+  align-items: center;
+  
 }
 .details-container p{
   font-size: 18px;
   text-align: center;
-  margin: 10px 0 0 0;
-  padding: 0 45px 0 45px;
+  margin: 10px 0 0 0 !important;
+  padding:0 !important;
 }
 
 .details-container h2{
@@ -347,11 +386,18 @@ body::-webkit-scrollbar {
 }
 
 .details-content {
+  width: 100%;
   font-size: 20px;
+  display: flex;
+  justify-content: space;
+}
+
+.details-point {
+  width: 100%;
 }
 
 .details-buttons {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   justify-content: start;
 }

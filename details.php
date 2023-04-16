@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Add</title>
+    <title>Adminit | Details</title>
 </head>
 
 <body>
@@ -50,12 +50,25 @@ if (isset($_POST["submit"])) {
                     <h2>Details</h2>
                 </div>
                 <div class="details-content">
-                    <p><?= $_SESSION["user"] ?></p>
-                    <p><?= $_SESSION["password"] ?></p>
-                    <p><?= $_SESSION["access"] ?></p>
-                    <div class="details-buttons">
-                        <a class="btn" href="main.php">Back</a>
+                    <div class="details-point">
+                        <p>Username</p>
+                        <p><?= $_SESSION["user"] ?></p>
                     </div>
+                    <div class="details-point">
+
+                        <p>Password</p>
+                        <p><?= $_SESSION["password"] ?></p>
+                    </div>
+
+                    <div class="details-point">
+
+                        <p>Access</p>
+                        <p><?= $_SESSION["access"] ?></p>
+                    </div>
+
+                </div>
+                <div class="details-buttons">
+                    <a class="btn" href="main.php">Back</a>
                 </div>
             </div>
         </div>

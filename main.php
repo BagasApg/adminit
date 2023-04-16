@@ -2,7 +2,6 @@
 require 'config.php';
 require 'ui.php';
 
-
 $result = mysqli_query($conn, "SELECT * FROM murid");
 $murid = [];
 while ($row = mysqli_fetch_assoc($result)) {
@@ -12,6 +11,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,24 +33,27 @@ if (!isset($_SESSION["user"])) {
     <?= $sidebar ?>
     <div class="container">
 
+        <?php
 
-        <div class="header">
-            <a class="btn" href="add.php">Add</a>
-        </div>
+        if ($_SESSION["access"] == "true") : ?>
+            <div class="header">
+                <a class="btn" href="add.php">Add</a>
+            </div>
+        <?php
+
+        endif;
+
+        ?>
         <div class="table">
             <table class="style-table">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <?php
-
-                        if ($_SESSION["access"] == "true") {
-                            echo "<th>Username</th>";
-                            echo "<th>Password</th>";
-                        }
-
-                        ?>
+                        <?php if ($_SESSION["access"] == "true") : ?>
+                            <th>Username</th>
+                            <th>Password</th>
+                        <?php endif; ?>
 
 
                         <th>Image</th>
@@ -62,12 +66,13 @@ if (!isset($_SESSION["user"])) {
                         <tr>
                             <td class="text-center"><?= $row["id"] ?></td>
                             <td><?= $row["name"] ?></td>
-                            <?php
-                            if ($_SESSION["access"] == "true") {
-                                echo "<td>{$row["username"]}</td>";
-                                echo "<td>{$row["password"]}</td>";
-                            }
-                            ?>
+
+                            <?php if ($_SESSION["access"] == "true") : ?>
+
+                                <td><?= $row["username"] ?></td>
+                                <td><?= $row["password"] ?></td>
+
+                            <?php endif; ?>
 
                             <td class="text-center"><?= $row["image"] ?></td>
                             <td class="text-center">
@@ -105,6 +110,8 @@ if (!isset($_SESSION["user"])) {
         });
 
 
+
+
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')
             // $('.sidebar').toggle('.sidebar-close')
@@ -116,6 +123,7 @@ if (!isset($_SESSION["user"])) {
             $('.modal').hide();
             $(".buttons a.btn").attr('href', `delete.php?id=`);
         }
+        $('.modal').click(closeModal);
 
         function openModal(id) {
             $('.modal').show();
