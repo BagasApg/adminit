@@ -51,41 +51,35 @@ body::-webkit-scrollbar {
   margin: 0;
 }
 
-
-
-
-
 @keyframes geming {
-  0%{
+  0% {
     color: white;
   }
   12.5% {
-    color:red;
+    color: red;
   }
   25% {
     color: green;
   }
-  37.5%{
+  37.5% {
     color: blue;
   }
-  50%{
+  50% {
     color: #264653;
   }
   62.5% {
     color: #2a9d8f;
   }
-  75%{
+  75% {
     color: #e9c46a;
   }
-  87.5%{
+  87.5% {
     color: #f4a261;
   }
-  100%{
+  100% {
     color: white;
   }
-  
 }
-
 
 .sidebar {
   margin-top: 11px;
@@ -122,8 +116,6 @@ body::-webkit-scrollbar {
 .sidebar ul a:hover {
   color: salmon;
 }
-
-
 
 .open {
   transition: all 0.6s ease;
@@ -248,7 +240,7 @@ body::-webkit-scrollbar {
   text-align: center;
 }
 
-.modal {
+.modal-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -316,7 +308,7 @@ body::-webkit-scrollbar {
   text-align: center;
   margin: 15px 0 0 0;
 }
-.add-container p{
+.add-container p {
   font-size: 18px;
   text-align: center;
   margin: 5px 0 0 0;
@@ -361,12 +353,11 @@ body::-webkit-scrollbar {
   padding-top: 10px;
 }
 
-input#yes, input#no {
+input#yes,
+input#no {
   width: 13px !important;
   height: 13px !important;
 }
-
-
 
 /* details.php */
 
@@ -374,16 +365,15 @@ input#yes, input#no {
   padding: 5px 25px 20px 25px;
   text-align: center;
   align-items: center;
-  
 }
-.details-container p{
+.details-container p {
   font-size: 18px;
   text-align: center;
   margin: 10px 0 0 0 !important;
-  padding:0 !important;
+  padding: 0 !important;
 }
 
-.details-container h2{
+.details-container h2 {
   margin-bottom: 10px;
 }
 
@@ -418,7 +408,7 @@ input#yes, input#no {
   text-align: center;
   margin: 15px 0 0 0;
 }
-.login-container p{
+.login-container p {
   font-size: 18px;
   text-align: center;
   margin: 10px 0 0 0;

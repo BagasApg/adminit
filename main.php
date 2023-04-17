@@ -91,12 +91,14 @@ if (!isset($_SESSION["user"])) {
                         <h1>Are you sure?</h1>
                         <p>You are deleting user with id of <br><b>num</b>. <br>Wish to proceed?</p>
                         <div class="buttons">
-                            <a onclick="closeModal()" class="btn btn-secondary">Back</a>
+                            <a onclick="closeModal()" class="btn btn-secondary">Cancel</a>
                             <a href="delete.php?id=" class="btn">Delete</a>
                         </div>
 
                     </div>
                 </div>
+                <div class="shadow-bg d-none">
+            </div>
             </div>
         </div>
     </div>
@@ -124,7 +126,7 @@ if (!isset($_SESSION["user"])) {
             $('.modal').hide();
             $(".buttons a.btn").attr('href', `delete.php?id=`);
         }
-        $('.modal').click(closeModal);
+        $('.modal-bg').click(closeModal);
 
         function openModal(id) {
             $('.modal').show();

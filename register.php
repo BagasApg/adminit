@@ -2,23 +2,34 @@
 require 'config.php';
 
 if (isset($_POST["submit"])) {
+    
     $continue = true;
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
-    $access = $_POST["access"];
+    if (empty($_POST["access"])) {
+        $access = "false";
+    } else {
+        $access = $_POST["access"];
+    }
+
 
     if ($confirmPassword !== $password) {
         $continue = false;
     }
 
     if (!empty($username) && !empty($password) && !empty($confirmPassword) && !empty($access) && $continue) {
-        $result = mysqli_query($conn, "INSERT INTO admin(username,password,access) VALUES('$username','$password','$access')");
+        // $result = mysqli_query($conn, "INSERT INTO admin(username,password,access) VALUES('$username','$password','$access')");
+
+        dd($_POST["access"]);
+
         // $_POST["alert"] = "Created!"
         header("Location: login.php");
     } else if (!$continue) {
+        $_SESSION["access"] = $access;
         $_POST["alert"] = "Password doesn't match!";
     } else {
+        $_SESSION["access"] = $access;
         $_POST["alert"] = "Fill the blank form!";
     }
 } else {
@@ -85,9 +96,11 @@ if (isset($_POST["submit"])) {
                             <label for="no">No</label>
                         </div>
                     <?php
-
+                    else: ?>
+                        <input type="hidden" name="access" value="noaccess">
+                    <?php
                     endif;
-
+                    
                     ?>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
