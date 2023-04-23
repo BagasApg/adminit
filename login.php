@@ -1,9 +1,7 @@
 <?php
 require 'config.php';
 
-if (isset($_SESSION["request"])) {
-    dd($_SESSION["request"]);
-}
+
 
 if (isset($_POST["submit"])) {
     $continue = true;
@@ -84,6 +82,8 @@ if (isset($_POST["submit"])) {
             $('.sidebar').toggleClass('open')
 
         });
+
+        $('.sidebar').attr("style", "margin-top: 55px;")
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')

@@ -9,3 +9,8 @@ function dd($var)
   var_dump($var);
   die;
 }
+
+function redirect($url)
+{
+  header("Location: " . $url);
+}

@@ -1,39 +1,40 @@
 <?php
 require 'config.php';
-
 if (isset($_POST["submit"])) {
-    
+    // dd($_POST["access"]);
     $continue = true;
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
-    if (empty($_POST["access"])) {
-        $access = "false";
+    if (!isset($_POST["access"])) {
+        $access = "nofromadmin";
+    } else if ($_POST['access'] == "true") {
+        $access = "yesfromadmin";
     } else {
-        $access = $_POST["access"];
+        $access = "nofromuser";
     }
-
+    dd($access);
 
     if ($confirmPassword !== $password) {
         $continue = false;
     }
 
+
     if (!empty($username) && !empty($password) && !empty($confirmPassword) && !empty($access) && $continue) {
-        // $result = mysqli_query($conn, "INSERT INTO admin(username,password,access) VALUES('$username','$password','$access')");
-
-        dd($_POST["access"]);
-
+        $result = mysqli_query($conn, "INSERT INTO admin(username,password,access) VALUES('$username','$password','$access')");
         // $_POST["alert"] = "Created!"
-        header("Location: login.php");
+        if ($_SESSION["request"] == "allow") {
+            redirect("main.php");
+        } else {
+            redirect("login.php");
+        }
     } else if (!$continue) {
-        $_SESSION["access"] = $access;
+        // session_destroy();
         $_POST["alert"] = "Password doesn't match!";
     } else {
-        $_SESSION["access"] = $access;
+        // session_destroy();
         $_POST["alert"] = "Fill the blank form!";
     }
-} else {
-    session_destroy();
 }
 
 ?>
@@ -48,20 +49,40 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Register</title>
+    <title>
+        <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") : ?>
+            Adminit | Add Admin
+        <?php else : ?>
+            Register to Adminit
+        <?php endif; ?>
+    </title>
 </head>
 
-<body>
-    <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:absolute; margin:0;">
-        <div class="login-container" style="margin:0;">
+<body style="margin-top: 45px;">
+    <?php
+
+    if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
+        require 'ui.php';
+        echo $navbar;
+        echo $sidebar;
+    }
+
+    ?>
+    <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:fixed; margin:0;">
+        <div class="login-container" style="margin-top :-65px;">
 
             <div class="header">
                 <?php
 
                 if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
+
                     $registerPage = "Register New Admin";
+                    $_SESSION["request"] = "allow";
+                    // var_dump($_SESSION["request"]);
                 } else {
                     $registerPage = "Register to Adminit";
+                    $_SESSION["request"] = "no";
+                    // var_dump($_SESSION["request"]);
                 }
 
                 ?>
@@ -84,24 +105,18 @@ if (isset($_POST["submit"])) {
                         <input type="password" name="confirmpassword" id="confirmpassword" class="form-input">
                     </div>
                     <?php
-
                     if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") :
-
                     ?>
                         <div class="label-radio">
                             <label for="access" style="display:block">Has access?</label>
-                            <input type="radio" name="access" id="yes" value="true">
+                            <input type="checkbox" name="access" id="yes" value="true">
                             <label for="yes">Yes</label>
-                            <input type="radio" name="access" id="no" value="false">
-                            <label for="no">No</label>
                         </div>
-                    <?php
-                    else: ?>
-                        <input type="hidden" name="access" value="noaccess">
-                    <?php
-                    endif;
-                    
-                    ?>
+
+                    <?php else : ?>
+
+                        <input type="hidden" name="access" value="nonadmininput">
+                    <?php endif; ?>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
                                 echo $_POST['alert'];
@@ -109,7 +124,12 @@ if (isset($_POST["submit"])) {
                     </div>
                     <div class="add-buttons">
 
-                        <a class="btn" href="login.php">Login</a>
+                        <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") : ?>
+                            <a class="btn" href="main.php">Back</a>
+
+                        <?php else : ?>
+                            <a class="btn" href="login.php">Login</a>
+                        <?php endif; ?>
 
                         <button type="input" name="submit" class="btn">Register</button>
                     </div>
@@ -126,6 +146,7 @@ if (isset($_POST["submit"])) {
             $('.sidebar').toggleClass('open')
 
         });
+
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')
