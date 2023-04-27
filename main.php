@@ -85,7 +85,8 @@ if (!isset($_SESSION["user"])) {
             </table>
         </div>
         <div class="modal d-none">
-            <div>
+            <div class="modal-bg">
+                </div>
                 <div class="window">
                     <div class="modal-content">
                         <h1>Are you sure?</h1>
@@ -98,7 +99,6 @@ if (!isset($_SESSION["user"])) {
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
@@ -124,7 +124,7 @@ if (!isset($_SESSION["user"])) {
             $('.modal').hide();
             $(".buttons a.btn").attr('href', `delete.php?id=`);
         }
-        $('.modal').click(closeModal);
+        $('.modal-bg').click(closeModal);
 
         function openModal(id) {
             $('.modal').show();

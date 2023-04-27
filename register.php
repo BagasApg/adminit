@@ -7,13 +7,13 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
     if (!isset($_POST["access"])) {
-        $access = "nofromadmin";
+        $access = "false";
     } else if ($_POST['access'] == "true") {
-        $access = "yesfromadmin";
+        $access = "true";
     } else {
-        $access = "nofromuser";
+        $access = "false";
     }
-    dd($access);
+    // dd($access);
 
     if ($confirmPassword !== $password) {
         $continue = false;
@@ -111,6 +111,7 @@ if (isset($_POST["submit"])) {
                             <label for="access" style="display:block">Has access?</label>
                             <input type="checkbox" name="access" id="yes" value="true">
                             <label for="yes">Yes</label>
+                            <p class="adminnote">*NOTE : Leaving this box blank will assign no admin privilege to the created account.</p>
                         </div>
 
                     <?php else : ?>

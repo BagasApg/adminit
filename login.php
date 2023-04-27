@@ -58,6 +58,7 @@ if (isset($_POST["submit"])) {
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" class="form-input">
                     </div>
+                    <div class="btn" id="showpass"></div>
 
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
@@ -74,7 +75,6 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
     <script>
-        <?= $navbar_js ?>
 
 
         $('.shadow-bg').click(function() {
@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 
         });
 
-        $('.sidebar').attr("style", "margin-top: 55px;")
+        $('.sidebar').attr("style", "margin-top: 55px;");
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')
@@ -91,6 +91,20 @@ if (isset($_POST["submit"])) {
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')
         }
+        $(document).ready(function(){
+            var passState = "password"
+            $('#showpass').click(function(){
+                // $('body').css('color', 'red')
+                if(passState == "password"){
+                    $('input#password').attr('type', 'text')
+                    passState = "text";
+                }else if(passState == "text") {
+                    $('input#password').attr('type', 'password')
+                    passState = "password";
+                }
+                // alert("hi")
+            });
+        });
     </script>
 </body>
 
