@@ -38,7 +38,7 @@ if (!isset($_SESSION["user"])) {
 
         if ($_SESSION["access"] == "true") : ?>
             <div class="header">
-                <a class="btn" href="add.php">Add</a>
+                <a class="btn" href="<?= BASE_URL . "add.php" ?>">Add</a>
             </div>
         <?php
 
@@ -86,19 +86,19 @@ if (!isset($_SESSION["user"])) {
         </div>
         <div class="modal d-none">
             <div class="modal-bg">
-                </div>
-                <div class="window">
-                    <div class="modal-content">
-                        <h1>Are you sure?</h1>
-                        <p>You are deleting user with id of <br><b>num</b>. <br>Wish to proceed?</p>
-                        <div class="buttons">
-                            <a onclick="closeModal()" class="btn btn-secondary">Back</a>
-                            <a href="delete.php?id=" class="btn">Delete</a>
-                        </div>
-
+            </div>
+            <div class="window">
+                <div class="modal-content">
+                    <h1>Are you sure?</h1>
+                    <p>You are deleting user with id of <br><b>num</b>. <br>Wish to proceed?</p>
+                    <div class="buttons">
+                        <a onclick="closeModal()" class="btn btn-secondary">Back</a>
+                        <a href="delete.php?id=" class="btn">Delete</a>
                     </div>
+
                 </div>
             </div>
+        </div>
     </div>
 
 

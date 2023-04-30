@@ -5,7 +5,7 @@ if (isset($_SESSION["user"])) {
 }
 
 $navbar = <<<EOD
-    <div class="navbar">
+        <div class="navbar">
             <header>
                 <a class="logo" href="main.php">Adminit</a>
                 <p>Welcome, <a class="user" onclick="openSidebar()">$user</a>!</p>

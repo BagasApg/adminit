@@ -75,8 +75,6 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
     <script>
-
-
         $('.shadow-bg').click(function() {
             $('.shadow-bg').toggleClass('d-none')
             $('.sidebar').toggleClass('open')
@@ -91,14 +89,14 @@ if (isset($_POST["submit"])) {
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')
         }
-        $(document).ready(function(){
+        $(document).ready(function() {
             var passState = "password"
-            $('#showpass').click(function(){
+            $('#showpass').click(function() {
                 // $('body').css('color', 'red')
-                if(passState == "password"){
+                if (passState == "password") {
                     $('input#password').attr('type', 'text')
                     passState = "text";
-                }else if(passState == "text") {
+                } else if (passState == "text") {
                     $('input#password').attr('type', 'password')
                     passState = "password";
                 }
