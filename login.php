@@ -56,9 +56,14 @@ if (isset($_POST["submit"])) {
                     </div>
                     <div class="label-input">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-input">
+                        <div style="position: relative; " class="inputsakkarepmu">
+                            <input type="password" name="password" id="password" class="form-input">
+                            <img class="showpass" src="assets\eye-off.svg" alt="">
+
+                        </div>
+
+                        </input>
                     </div>
-                    <div class="btn" id="showpass"></div>
 
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
@@ -91,13 +96,15 @@ if (isset($_POST["submit"])) {
         }
         $(document).ready(function() {
             var passState = "password"
-            $('#showpass').click(function() {
+            $('.showpass').click(function() {
                 // $('body').css('color', 'red')
                 if (passState == "password") {
                     $('input#password').attr('type', 'text')
+                    $('.showpass').attr("src", "assets/eye.svg")
                     passState = "text";
                 } else if (passState == "text") {
                     $('input#password').attr('type', 'password')
+                    $('.showpass').attr("src", "assets/eye-off.svg")
                     passState = "password";
                 }
                 // alert("hi")

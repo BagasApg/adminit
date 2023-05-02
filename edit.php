@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 require 'ui.php';
-$page = "Details";
 
 if (isset($_POST["update"])) {
     $continue = true;
@@ -10,7 +9,12 @@ if (isset($_POST["update"])) {
     $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmpassword"];
+    if ($_SESSION["access"] != "true") {
+        $confirmPassword = $_POST["confirmpassword"];
+    } else {
+        $confirmPassword = true;
+        $continue = true;
+    }
 
     if ($password != $confirmPassword) {
         $_POST["alert"] = "Password doesn't match!";
@@ -76,12 +80,23 @@ if (!isset($_SESSION["user"])) {
                     </div>
                     <div class="label-input">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
+                        <div style="position: relative" class="inputsakkarepmu">
+
+                            <input type="password" name="password" id="password" value="<?php if ($_SESSION["access"] == "true") {
+                                                                                            echo $password;
+                                                                                        } ?>" required>
+                            <img class="showpass" src="assets\eye-off.svg" alt="">
+
+                        </div>
+
                     </div>
-                    <div class="label-input">
-                        <label for="confirmpassword">Confirm Password</label>
-                        <input type="password" name="confirmpassword" id="confirmpassword" required>
-                    </div>
+
+                    <?php if ($_SESSION["access"] != "true") : ?>
+                        <div class="label-input">
+                            <label for="confirmpassword">Confirm Password</label>
+                            <input type="password" name="confirmpassword" id="confirmpassword" required>
+                        </div>
+                    <?php endif; ?>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
                                 echo $_POST['alert'];
@@ -90,7 +105,7 @@ if (!isset($_SESSION["user"])) {
                     <div class="add-buttons">
                         <input type="hidden" name="id" value=<?= $id ?>>
                         <a class="btn" href="main.php">Back</a>
-                        <button type="input" name="update" class="btn">Add</button>
+                        <button type="input" name="update" class="btn">Edit</button>
                     </div>
                 </form>
             </div>
@@ -111,6 +126,23 @@ if (!isset($_SESSION["user"])) {
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')
         }
+
+        $(document).ready(function() {
+            var passState = "password"
+            $('.showpass').click(function() {
+                // $('body').css('color', 'red')
+                if (passState == "password") {
+                    $('input#password').attr('type', 'text')
+                    $('.showpass').attr("src", "assets/eye.svg")
+                    passState = "text";
+                } else if (passState == "text") {
+                    $('input#password').attr('type', 'password')
+                    $('.showpass').attr("src", "assets/eye-off.svg")
+                    passState = "password";
+                }
+                // alert("hi")
+            });
+        });
     </script>
 </body>
 

@@ -108,10 +108,10 @@ if (isset($_POST["submit"])) {
                     if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") :
                     ?>
                         <div class="label-radio">
-                            <label for="access" style="display:block">Has access?</label>
+                            <label for="access" style="display:block">Grant access?</label>
                             <input type="checkbox" name="access" id="yes" value="true">
                             <label for="yes">Yes</label>
-                            <p class="adminnote">*NOTE : Leaving this box blank will assign no admin privilege to the created account.</p>
+                            <p class="adminnote">*NOTE : Leaving this box blank will grants no admin privilege to the created account.</p>
                         </div>
 
                     <?php else : ?>
