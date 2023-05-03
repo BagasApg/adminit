@@ -33,7 +33,17 @@ if (!isset($_SESSION["user"])) {
     <?= $navbar ?>
     <?= $sidebar ?>
     <div class="container">
-
+        <?php if (isset($_SESSION["firstMessage"]) && $_SESSION["firstMessage"] == "true") : ?>
+            <p style="margin: 0px 0 15px 0;"><span style="font-size: 20px;">Welcome to <b>Adminit</b>! </span><br>
+            This is your team's table of contents. Start organizing by pressing : <br>
+            <b>Add</b> - Add another new row of data <br>
+            <b>Edit</b> - Edit data from selected row of data <br>
+            <b>Delete</b> - Delete the selected row of data <br>
+        </p>
+        <?php
+        endif; 
+        $_SESSION["firstMessage"] = "false";
+        ?>
         <?php
 
         if ($_SESSION["access"] == "true") : ?>

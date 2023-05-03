@@ -3,6 +3,9 @@ require 'config.php';
 require 'ui.php';
 
 if (isset($_POST["submit"])) {
+    // dd($_FILES);
+    $file_type = explode(".", $_FILES["image"]["name"]);
+    dd($file_type);
     $continue = true;
     $name = $_POST["name"];
     $username = $_POST["username"];
@@ -90,7 +93,7 @@ if ($_SESSION["page"] != "Add User") {
 
             </div>
             <div class="add-form">
-                <form action="add.php" method="POST">
+                <form action="add.php" method="POST" enctype="multipart/form-data">
                     <div class="label-input">
                         <label for="name">Name</label>
                         <input type="text" placeholder="<?= $random["name"] ?>" name="name" id="name" class="form-input">
@@ -109,7 +112,7 @@ if ($_SESSION["page"] != "Add User") {
                     </div>
                     <div class="label-input">
                         <label for="image">Image</label>
-                        <input type="text" placeholder="<?= $random["image"] ?>" name="image" id="image" class="form-input">
+                        <input type="file" placeholder="<?= $random["image"] ?>" name="image" id="image" class="form-input">
                     </div>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {

@@ -14,6 +14,7 @@ if (isset($_POST["submit"])) {
             $_SESSION["user"] = $username;
             $_SESSION["password"] = $password;
             $_SESSION["access"] = mysqli_fetch_assoc($result)["access"];
+            $_SESSION["firstMessage"] = "true";
             header("Location: main.php");
         } else {
             $_POST["alert"] = "No account found!";

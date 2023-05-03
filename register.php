@@ -98,7 +98,11 @@ if (isset($_POST["submit"])) {
                     </div>
                     <div class="label-input">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-input">
+                        <div style="position: relative; " class="inputsakkarepmu">
+                            <input type="password" name="password" id="password" class="form-input">
+                            <img class="showpass" src="assets\eye-off.svg" alt="">
+
+                        </div>
                     </div>
                     <div class="label-input">
                         <label for="confirmpassword">Confirm Password</label>
@@ -139,7 +143,6 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
     <script>
-        <?= $navbar_js ?>
 
 
         $('.shadow-bg').click(function() {
@@ -155,6 +158,24 @@ if (isset($_POST["submit"])) {
             $('.sidebar').toggleClass('open')
             // $('.sidebar').css('right', '0')
         }
+
+        // show pass
+        $(document).ready(function() {
+            var passState = "password"
+            $('.showpass').click(function() {
+                // $('body').css('color', 'red')
+                if (passState == "password") {
+                    $('input#password').attr('type', 'text')
+                    $('.showpass').attr("src", "assets/eye.svg")
+                    passState = "text";
+                } else if (passState == "text") {
+                    $('input#password').attr('type', 'password')
+                    $('.showpass').attr("src", "assets/eye-off.svg")
+                    passState = "password";
+                }
+                // alert("hi")
+            });
+        });
     </script>
 </body>
 
