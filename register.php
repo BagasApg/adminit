@@ -71,7 +71,7 @@ if (isset($_POST["submit"])) {
     <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:fixed; margin:0;">
         <div class="login-container" style="margin-top :-65px;">
 
-            <div class="header">
+            <div class="add-header">
                 <?php
 
                 if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
@@ -130,21 +130,19 @@ if (isset($_POST["submit"])) {
                     <div class="add-buttons">
 
                         <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") : ?>
-                            <a class="btn" href="main.php">Back</a>
+                            <a class="btn btn-secondary" href="main.php">Back</a>
 
                         <?php else : ?>
-                            <a class="btn" href="login.php">Login</a>
+                            <a class="btn btn-secondary" href="login.php">Login</a>
                         <?php endif; ?>
 
-                        <button type="input" name="submit" class="btn">Register</button>
+                        <button type="input" name="submit" class="btn btn-main">Register</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <script>
-
-
         $('.shadow-bg').click(function() {
             $('.shadow-bg').toggleClass('d-none')
             $('.sidebar').toggleClass('open')

@@ -4,22 +4,31 @@ require 'ui.php';
 
 if (isset($_POST["submit"])) {
     // dd($_FILES);
-    $file_type = explode(".", $_FILES["image"]["name"]);
-    dd($file_type);
+    $filename = $_FILES["image"]["name"];
+    $allow = array("png", "jpg", "jpeg");
+    $file_exploded = explode(".", $filename);
+    $extension = end($file_exploded);
     $continue = true;
     $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
-    $image = $_POST["image"];
-
     if ($password != $confirmPassword) {
         $continue = false;
     }
 
-    if (!empty($name) && !empty($username) && !empty($password) && !empty($confirmPassword) && !empty($image) && $continue) {
-        $result = mysqli_query($conn, "INSERT INTO murid(name,username,password,image) VALUES('$name','$username','$password','$image')");
-        header("Location: main.php");
+
+    if (!empty($name) && !empty($username) && !empty($password) && !empty($confirmPassword) && !empty($filename) && $continue) {
+        if (in_array($extension, $allow)) {
+            $temp = $_FILES["image"]["tmp_name"];
+            $directory = "./images/";
+
+            $new_directory = move_uploaded_file($temp, $directory . $filename);
+            $result = mysqli_query($conn, "INSERT INTO murid(name,username,password,image) VALUES('$name','$username','$password','$filename')");
+            header("Location: main.php");
+        } else {
+            $_POST["alert"] = "Extension not supported!";
+        }
     } else if (!$continue) {
         $_POST["alert"] = "Password doesn't match!";
     } else {
@@ -38,8 +47,8 @@ $randoms = [
         "image" => "alexander.jpg"
     ],
     1 => [
-        "name" => "Brian Rich",
-        "username" => "richbrian",
+        "name" => "Brian Sam",
+        "username" => "sambrian",
         "image" => "brian.jpg"
     ],
     2 => [
@@ -120,9 +129,9 @@ if ($_SESSION["page"] != "Add User") {
                             } ?></p>
                     </div>
                     <div class="add-buttons">
-                        <a class="btn" href="main.php">Back</a>
+                        <a class="btn btn-secondary" href="main.php">Back</a>
 
-                        <button type="input" name="submit" class="btn" style="margin: 0 0 0 auto; display: block">Add</button>
+                        <button type="input" name="submit" class="btn btn-main" style="margin: 0 0 0 auto; display: block">Add</button>
                     </div>
                 </form>
             </div>

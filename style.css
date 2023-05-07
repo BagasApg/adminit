@@ -6,7 +6,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ffe8e6;
+  background-color: #FFF4F3;
 }
 
 body::-webkit-scrollbar {
@@ -32,13 +32,15 @@ body::-webkit-scrollbar {
 .navbar p {
   color: white;
   text-decoration: none;
+  font-size: 17px;
+  text-align: center;
 }
 
-.navbar a.user {
+/* .navbar a.user {
   font-size: 17px;
   cursor: pointer;
-  /* animation: geming 8s infinite alternate; */
-}
+   animation: geming 8s infinite alternate; 
+} */
 
 .navbar a.logo {
   font-size: 20px;
@@ -48,6 +50,15 @@ body::-webkit-scrollbar {
   font-size: 16px;
   color: white;
   margin: 0;
+}
+
+.menu-button {
+  display: flex;
+}
+
+.menu-button img {
+  cursor: pointer; 
+  margin-left: 30px;
 }
 
 @keyframes geming {
@@ -78,7 +89,7 @@ body::-webkit-scrollbar {
 }
 
 .sidebar {
-  margin-top: 11px;
+  margin-top: 0px;
   padding: 10px 0 0 10px;
   width: 200px;
   height: 100%;
@@ -134,11 +145,11 @@ body::-webkit-scrollbar {
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 61px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 25px 20px 10px 20px;
+  padding: 16px 20px 10px 20px;
 }
 
 #submit {
@@ -161,21 +172,31 @@ body::-webkit-scrollbar {
 .btn {
   border: none;
   padding: 4px 12px;
-  background-color: #c06258;
-  color: white;
+  /* background-color: salmon; */
+  /* color: white; */
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
   font-size: 16px;
 }
 
-.btn:hover {
+/* .btn:hover {
+  color: white;
   background-color: salmon;
 }
 
 .btn:active {
   background-color: rgb(255, 181, 181);
   color: black;
+} */
+
+.btn-main {
+  background-color: salmon;
+  color: white;
+}
+
+.btn-main:hover {
+  background-color: #e46253;
 }
 
 .btn-secondary {
@@ -187,26 +208,114 @@ body::-webkit-scrollbar {
 
 .btn-secondary:hover {
   color: white;
+  background-color: salmon;
 }
 
-.style-table a {
-  color: black;
-  margin-left: 5px;
-  border: none;
-  padding: 2px 12px;
-  background-color: #e7f2f8;
-  border-radius: 5px;
-  cursor: pointer;
+.btn-add {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: salmon;
+  padding: 4px 16px;
+  border: 1px solid salmon;
+  margin-left: 24px;
+}
+
+a {
   text-decoration: none;
 }
 
-.style-table a:hover {
-  background-color: #a3dfff;
+
+
+.header {
+  margin: 0 35px 0 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.header-add-user {
+  display: flex;
 }
 
-.style-table a:active {
-  background-color: #00a6ff;
+.header-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-search input {
+    border-radius: 7px 0px 0px 7px;
+
+  box-sizing: border-box;
+  padding-left: 10px;
+  border: none;
+  width: 220px;
+  height: 34px;
+  background-color: rgb(231, 231, 231);
+}
+
+.header-search button {
+    border-radius: 0px 7px 7px 0px;
+  padding-right: 30px;
+  cursor: pointer;
+  border: none;
+  background-color: lightgray;
+  width: 34px;
+  height: 34px;
+}
+
+.search-literal-button {
+  color: rgb(85, 85, 85);
+  cursor: pointer;
+  display: flex;
+  gap: 3px;
+}
+
+.user-total {
+  align-items: center;
+  display: flex;
   color: white;
+  border-radius: 20px;
+  gap: 4px;
+  /* width: 65px; */
+  background-color: salmon;
+  padding: 4px 20px;
+}
+
+.table {
+  display: block;
+  background-color: white;
+  width: 100%;
+  box-shadow: 1.5px 2.4px 10px 1px rgba(0,0,0,0.20);
+  /* padding-top: 12px; */
+}
+
+.style-table a {
+  margin: 0;
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+.style-table a {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid rgba(128, 128, 128, 0);
+  background-color: rgba(128, 128, 128, 0);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.style-table a:hover {
+  padding: 4px;
+  transition: 0.2s;
+  /* border: 2px solid rgba(0, 0, 0, 0.075); */
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+.style-table .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .style-table {
@@ -215,21 +324,25 @@ body::-webkit-scrollbar {
   width: 100%;
   border-radius: 8px 8px 0 0;
   overflow: hidden;
+  
 }
 
+
 .style-table thead tr {
-  color: white;
-  background-color: #c6655b;
+  color: #2b2b2b;
+  background-color: white;
+  /* box-shadow: 0px -8px 7px -11px rgba(0,0,0,0.73) inset; */
 }
 
 .style-table tbody tr {
-  background-color: #fff4f1;
-  border-bottom: 2.5px solid #ffe8e6;
+  background-color: white;
+  /* border-bottom: 2.5px solid #ffe8e6; */
+  
 }
 
 .style-table th,
 .style-table td {
-  padding: 12px 30px;
+  padding: 8px 30px;
 }
 
 .text-center {
@@ -248,7 +361,7 @@ body::-webkit-scrollbar {
 }
 
 .window {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -301,7 +414,7 @@ body::-webkit-scrollbar {
 
 .wrapper {
   padding: 0;
-  margin-top: 50px;
+  margin-top: 61px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -309,11 +422,13 @@ body::-webkit-scrollbar {
 }
 
 .add-container {
-  margin-top: 50px;
-  border: 5px solid #fa8072;
+  box-shadow: 1.5px 2.4px 10px 1px rgba(0,0,0,0.20);
+
+  margin-top: 16px;
+  /* border: 5px solid #fa8072; */
   border-radius: 10px;
   background-color: white;
-  width: 35%;
+  width: 40%;
 }
 
 .add-container h2 {
@@ -351,6 +466,12 @@ body::-webkit-scrollbar {
   display: block;
 }
 
+.add-form .label-input-img {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .add-form .label-input:nth-child(1) {
   padding-top: 15px;
 }
@@ -358,7 +479,23 @@ body::-webkit-scrollbar {
 .add-form .add-buttons {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0 5px 0;
+  padding: 25px 0 5px 0;
+}
+
+input[type=file]::file-selector-button {
+  font-family: "Quicksand";
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0 15px;
+  border: none;
+  height: 100%;
+  border-radius: 5px;
+}
+
+
+input[type=file]::file-selector-button:hover {
+  background-color: salmon;
+  color: white;
 }
 
 .label-radio {

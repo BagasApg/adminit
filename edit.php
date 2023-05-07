@@ -36,6 +36,7 @@ if (isset($_GET["id"])) {
     $name = $user_data["name"];
     $username = $user_data["username"];
     $password = $user_data["password"];
+    $image = $user_data["image"];
 }
 
 if (!isset($_SESSION["user"])) {
@@ -97,6 +98,15 @@ if (!isset($_SESSION["user"])) {
                             <input type="password" name="confirmpassword" id="confirmpassword" required>
                         </div>
                     <?php endif; ?>
+                    <div class="label-input">
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="image">
+
+                    </div>
+                    <div class="label-input-img">
+
+                        <img name="image" src="images/<?= $image ?>" alt="">
+                    </div>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
                                 echo $_POST['alert'];
@@ -104,8 +114,8 @@ if (!isset($_SESSION["user"])) {
                     </div>
                     <div class="add-buttons">
                         <input type="hidden" name="id" value=<?= $id ?>>
-                        <a class="btn" href="main.php">Back</a>
-                        <button type="input" name="update" class="btn">Edit</button>
+                        <a class="btn btn-secondary" href="main.php">Back</a>
+                        <button type="input" name="update" class="btn btn-main">Edit</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-define("BASE_URL", "http://localhost:8080/belajarphp/adminit/");
+define("BASE_URL", "http://localhost/projects/tugasakhirphp/");
 $conn = mysqli_connect("localhost", "root", "", "tugasakhirphp");
 
 

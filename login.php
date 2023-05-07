@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
 <body>
     <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:absolute; margin:0;">
         <div class="login-container" style="margin:0;">
-            <div class="header">
+            <div class="add-header">
                 <h2>Login to Adminit</h2>
                 <p>Organize your team with the best admin control panel!</p>
             </div>
@@ -72,9 +72,9 @@ if (isset($_POST["submit"])) {
                             } ?></p>
                     </div>
                     <div class="add-buttons">
-                        <a class="btn" href="register.php">Register</a>
+                        <a class="btn btn-secondary" href="register.php">Register</a>
 
-                        <button type="input" name="submit" class="btn">Login</button>
+                        <button type="input" name="submit" class="btn btn-main">Login</button>
                     </div>
                 </form>
             </div>
