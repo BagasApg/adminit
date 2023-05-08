@@ -2,53 +2,20 @@
 require 'config.php';
 require 'ui.php';
 
-if (isset($_POST["submit"])) {
-   
-    $name = $_POST["name"];
+$id = $_GET["id"];
 
-}
+$result = mysqli_query($conn, "SELECT * FROM murid WHERE id = '$id'");
+$data = mysqli_fetch_object($result);
+
+$name = $data->name;
+$username = $data->username;
+$password = $data->password;
+$image = $data->image;
 
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
 }
 
-$randoms = [
-    0 => [
-        "name" => "Alexander Christie",
-        "username" => "alexhris",
-        "image" => "alexander.jpg"
-    ],
-    1 => [
-        "name" => "Brian Sam",
-        "username" => "sambrian",
-        "image" => "brian.jpg"
-    ],
-    2 => [
-        "name" => "Clair Ristyan",
-        "username" =>
-        "clairtoexplain",
-        "image" => "clair.jpg"
-    ],
-    3 => [
-        "name" => "Dan Augh",
-        "username" =>
-        "danausir",
-        "image" => "dan.jpg"
-    ],
-    4 => [
-        "name" => "Evan Anodd",
-        "username" =>
-        "literaldice",
-        "image" => "evan.jpg"
-    ],
-];
-
-$random = $randoms[rand(1, 3)];
-
-if ($_SESSION["page"] != "Add User") {
-    $_SESSION["page"] = "Add User";
-    header("Location: add.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +28,7 @@ if ($_SESSION["page"] != "Add User") {
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.6.4.js"></script>
 
-    <title>Adminit | Add User</title>
+    <title>Adminit | User Details</title>
 </head>
 
 <body>
@@ -69,43 +36,34 @@ if ($_SESSION["page"] != "Add User") {
     <?= $sidebar ?>
     <div class="wrapper">
         <div class="add-container">
-            <div class="header">
-                <h2>Add User</h2>
+            <div class="user-detail-container">
 
-            </div>
-            <div class="add-form">
-                <form action="add.php" method="POST" enctype="multipart/form-data">
-                    <div class="label-input">
-                        <label for="name">Name</label>
-                        <input type="text" placeholder="<?= $random["name"] ?>" name="name" id="name" class="form-input">
+                <div class="user-detail-header">
+                    <h2><?= $name ?>'s Details</h2>
+                </div>
+                <div class="user-detail-body">
+                    <div class="user-detail-left">
+                        <img width="200px" src="images/<?= $image ?>" alt="">
                     </div>
-                    <div class="label-input">
-                        <label for="username">Username</label>
-                        <input type="text" placeholder="<?= $random["username"] ?>" name="username" id="username" class="form-input">
-                    </div>
-                    <div class="label-input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-input">
-                    </div>
-                    <div class="label-input">
-                        <label for="confirmpassword">Confirm Password</label>
-                        <input type="password" name="confirmpassword" id="confirmpassword" class="form-input">
-                    </div>
-                    <div class="label-input">
-                        <label for="image">Image</label>
-                        <input type="file" placeholder="<?= $random["image"] ?>" name="image" id="image" class="form-input">
-                    </div>
-                    <div>
-                        <p><?php if (isset($_POST['alert'])) {
-                                echo $_POST['alert'];
-                            } ?></p>
-                    </div>
-                    <div class="add-buttons">
-                        <a class="btn btn-secondary" href="main.php">Back</a>
+                    <div class="user-detail-right">
+                        <p class="bold user-detail-label">ID</p>
+                        <p><?= $id ?></p>
+                        <p class="bold user-detail-label">Name</p>
+                        <p><?= $name ?></p>
+                        <p class="bold user-detail-label">Username</p>
+                        <p><?= $username ?></p>
+                        <?php if ($_SESSION["access"] == "true") : ?>
 
-                        <button type="input" name="submit" class="btn btn-main" style="margin: 0 0 0 auto; display: block">Add</button>
+                            <p class="bold user-detail-label">Password</p>
+                            <p><?= $password ?></p>
+                        <?php endif; ?>
                     </div>
-                </form>
+
+                </div>
+                <div class="add-buttons">
+
+                    <a class="btn btn-secondary" href="main.php">Back</a>
+                </div>
             </div>
         </div>
     </div>

@@ -9,8 +9,8 @@ if (!isset($_SESSION["user"])) {
     header("Location: login.php");
 }
 
-if (isset($_POST["search-button"])) {
-    $search = "%" . $_POST["search"] . "%";
+if (isset($_GET["search"])) {
+    $search = "%" . $_GET["search"] . "%";
     if ($_SESSION["access"] == "true") {
 
         $result = mysqli_query($conn, "SELECT * FROM murid WHERE id LIKE '$search' OR
@@ -76,11 +76,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <?php endif; ?>
                 </div>
                 <div class="header-search">
-                    <form action="main.php" method="POST">
+                    <form action="main.php" method="GET">
                         <div class="search-literal-button">
                             <input type="text" name="search" placeholder="Search..">
 
-                            <button type="submit" name="search-button">
+                            <button type="submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -183,12 +183,17 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                             </svg>
                                         </a>
-                                        <a onclick="openModal(<?= $row['id'] ?>)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
-                                                <polyline points="3 6 5 6 21 6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </a>
+                                        <?php if ($_SESSION["access"] == "true") : ?>
+
+
+
+                                            <a onclick="openModal(<?= $row['id'] ?>)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>

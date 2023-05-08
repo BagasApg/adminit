@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
     </title>
 </head>
 
-<body style="margin-top: 45px;">
+<body>
     <?php
 
     if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
@@ -68,8 +68,8 @@ if (isset($_POST["submit"])) {
     }
 
     ?>
-    <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:fixed; margin:0;">
-        <div class="login-container" style="margin-top :-65px;">
+    <div class="wrapper">
+        <div class="login-container" style="margin: 0">
 
             <div class="add-header">
                 <?php
@@ -127,17 +127,23 @@ if (isset($_POST["submit"])) {
                                 echo $_POST['alert'];
                             } ?></p>
                     </div>
-                    <div class="add-buttons">
 
-                        <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") : ?>
+                    <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") : ?>
+                        <div class="add-buttons">
+
                             <a class="btn btn-secondary" href="main.php">Back</a>
+                            <button type="input" name="submit" class="btn btn-main">Register</button>
 
-                        <?php else : ?>
-                            <a class="btn btn-secondary" href="login.php">Login</a>
-                        <?php endif; ?>
+                        </div>
+                    <?php else : ?>
+                        <div class="login-buttons">
 
-                        <button type="input" name="submit" class="btn btn-main">Register</button>
-                    </div>
+                            <button style="width:100% ;height:36px" type="input" name="submit" class="btn btn-main">Register</button>
+                            <p style="color: black; font-size:16px; padding: 0" class="register-instead">Already have an account? <a href="login.php">Login now!</a></p>
+
+                        </div>
+                    <?php endif; ?>
+
                 </form>
             </div>
         </div>

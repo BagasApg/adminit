@@ -42,7 +42,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-    <div class="wrapper" style="display:flex; width: 100%; height: 100%; position:absolute; margin:0;">
+    <div class="wrapper">
         <div class="login-container" style="margin:0;">
             <div class="add-header">
                 <h2>Login to Adminit</h2>
@@ -71,10 +71,10 @@ if (isset($_POST["submit"])) {
                                 echo $_POST['alert'];
                             } ?></p>
                     </div>
-                    <div class="add-buttons">
-                        <a class="btn btn-secondary" href="register.php">Register</a>
+                    <div class="login-buttons">
 
-                        <button type="input" name="submit" class="btn btn-main">Login</button>
+                        <button style="width: 100%; height: 36px;" type="input" name="submit" class="btn btn-main">Login</button>
+                        <p style="color: black; font-size:16px; padding: 0" class="register-instead">Don't have account? <a href="register.php">Register now!</a></p>
                     </div>
                 </form>
             </div>

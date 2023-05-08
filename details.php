@@ -48,7 +48,7 @@ if (!isset($_SESSION["user"])) {
     <div class="wrapper">
         <div class="add-container">
             <div class="details-container">
-                <div class="header">
+                <div class="detail-header">
                     <h2>Details</h2>
                 </div>
                 <div class="details-content">
