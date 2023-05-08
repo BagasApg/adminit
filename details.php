@@ -70,7 +70,7 @@ if (!isset($_SESSION["user"])) {
 
                 </div>
                 <div class="details-buttons">
-                    <a class="btn" href="main.php">Back</a>
+                    <a class="btn btn-main" href="main.php">Back</a>
                 </div>
             </div>
         </div>
