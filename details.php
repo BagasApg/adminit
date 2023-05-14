@@ -56,11 +56,7 @@ if (!isset($_SESSION["user"])) {
                         <p>Username</p>
                         <p><?= $_SESSION["user"] ?></p>
                     </div>
-                    <div class="details-point">
 
-                        <p>Password</p>
-                        <p><?= $_SESSION["password"] ?></p>
-                    </div>
 
                     <div class="details-point">
 

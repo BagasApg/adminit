@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?= $sidebar ?>
     <div class="container">
         <div class="table">
-            <h2 style="margin: 20px 0 24px 24px">Users</h2>
+            <h2 style="margin: 20px 0 24px 24px">Dashboard</h2>
 
             <div class="header">
                 <div class="header-add-user">
@@ -62,7 +62,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </svg>
                     </div>
                     <?php if ($_SESSION["access"] == "true") : ?>
-                        <a style="font-weight: bold;" href="<?= BASE_URL . "add.php" ?>">
+                        <a style="font-weight: bold; margin-left:24px" href="<?= BASE_URL . "add.php" ?>">
                             <div class="btn btn-secondary btn-add">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -101,15 +101,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 }
 
                                 #table-2 {
-                                    width: 28%;
+                                    width: 24%;
                                 }
 
                                 #table-3 {
-                                    width: 16%;
+                                    width: 2%;
                                 }
 
                                 #table-4 {
-                                    width: 18%;
+                                    width: 36%;
                                 }
 
                                 #table-5 {
@@ -212,6 +212,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             </div>
             <div class="window">
                 <div class="modal-content">
+
                     <h1>Are you sure?</h1>
                     <p>You are deleting user with id of <br><b>num</b>. <br>Wish to proceed?</p>
                     <div class="buttons">

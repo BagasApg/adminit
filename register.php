@@ -4,8 +4,8 @@ if (isset($_POST["submit"])) {
     // dd($_POST["access"]);
     $continue = true;
     $username = $_POST["username"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmpassword"];
+    $password = hash('haval192,4', $_POST["password"]);
+    $confirmPassword = hash('haval192,4', $_POST["confirmpassword"]);
     if (!isset($_POST["access"])) {
         $access = "false";
     } else if ($_POST['access'] == "true") {
@@ -30,10 +30,16 @@ if (isset($_POST["submit"])) {
         }
     } else if (!$continue) {
         // session_destroy();
-        $_POST["alert"] = "Password doesn't match!";
+        $_SESSION["alert"] = "Password doesn't match!";
+        redirect("register.php");
     } else {
         // session_destroy();
-        $_POST["alert"] = "Fill the blank form!";
+        $_SESSION["alert"] = "Fill the blank form!";
+        redirect("register.php");
+    }
+} else {
+    if (isset($_SESSION["request"]) && $_SESSION["request"] != "allow") {
+        session_destroy();
     }
 }
 
@@ -68,8 +74,14 @@ if (isset($_POST["submit"])) {
     }
 
     ?>
-    <div class="wrapper">
-        <div class="login-container" style="margin: 0">
+    <div class="auth-wrapper <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
+
+                                    echo "admin-wrapper";
+                                } ?>">
+        <div class="login-container <?php if (isset($_SESSION["request"]) && $_SESSION["request"] == "allow") {
+
+                                        echo "add-admin-container";
+                                    } ?>" style="margin: 0">
 
             <div class="add-header">
                 <?php
@@ -123,8 +135,8 @@ if (isset($_POST["submit"])) {
                         <input type="hidden" name="access" value="nonadmininput">
                     <?php endif; ?>
                     <div>
-                        <p><?php if (isset($_POST['alert'])) {
-                                echo $_POST['alert'];
+                        <p><?php if (isset($_SESSION['alert'])) {
+                                echo $_SESSION['alert'];
                             } ?></p>
                     </div>
 

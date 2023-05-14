@@ -219,7 +219,6 @@ body::-webkit-scrollbar {
   color: salmon;
   padding: 4px 16px;
   border: 1px solid salmon;
-  margin-left: 24px;
 }
 
 a {
@@ -409,11 +408,34 @@ a {
 
 .wrapper {
   padding: 0;
-  margin-top: 100px;
+  margin-top: 61px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.auth-wrapper {
+  padding: 0;
+  margin-top: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.admin-wrapper {
+  padding: 0;
+  margin-top: 61px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add-admin-container {
+  margin-top: 16px !important;
 }
 
 .add-container {

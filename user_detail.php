@@ -16,6 +16,16 @@ if (!isset($_SESSION["user"])) {
     header("Location: login.php");
 }
 
+$leap = 22;
+$repeat = strlen($password) / $leap;
+$akhir = [];
+for ($i = 0; $i < $repeat; $i++) {
+    $cut = substr($password, $leap * $i, $leap);
+    $akhir[] = $cut;
+}
+
+$akhirToString = implode('-<br>', $akhir);
+
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +65,10 @@ if (!isset($_SESSION["user"])) {
                         <?php if ($_SESSION["access"] == "true") : ?>
 
                             <p class="bold user-detail-label">Password</p>
-                            <p><?= $password ?></p>
+                            <p><?= $akhirToString ?></p>
                         <?php endif; ?>
                     </div>
-
+                    <!-- navigator.clipboard.writeText -->
                 </div>
                 <div class="add-buttons">
 

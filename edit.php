@@ -2,6 +2,23 @@
 require 'config.php';
 require 'ui.php';
 
+// unlink("images/Nilou_Item.png");
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+
+    $result = mysqli_query($conn, "SELECT * FROM murid WHERE id='$id'");
+
+    $user_data = mysqli_fetch_assoc($result);
+    if ($result->num_rows == 1) {
+        $name = $user_data["name"];
+        $username = $user_data["username"];
+        $password = $user_data["password"];
+        $image = $user_data["image"];
+    } else {
+        redirect("main.php");
+    }
+}
+
 if (isset($_POST["update"])) {
     $continue = true;
 
@@ -9,6 +26,13 @@ if (isset($_POST["update"])) {
     $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $image = $_POST["image"];
+
+    $filename = $_FILES["image"]["name"];
+    $allow = array("png", "jpg", "jpeg");
+    $file_exploded = explode(".", $filename);
+    $extension = end($file_exploded);
+
     if ($_SESSION["access"] != "true") {
         $confirmPassword = $_POST["confirmpassword"];
     } else {
@@ -22,21 +46,23 @@ if (isset($_POST["update"])) {
     }
 
     if (isset($name) && isset($username) && isset($password) && isset($confirmPassword) && $continue) {
-        $result = mysqli_query($conn, "UPDATE murid SET name='$name',username='$username',password='$password' WHERE id='$id'");
+        $password = hash('haval192,4', $password);
+
+        if ($filename !== "") {
+            if (in_array($extension, $allow)) {
+                $temp = $_FILES["image"]["tmp_name"];
+                $directory = "./images/";
+                unlink($directory . $image);
+                $newdirectory = move_uploaded_file($temp, $directory . $filename);
+                $result = mysqli_query($conn, "UPDATE murid SET name='$name',username='$username',password='$password',image='$filename' WHERE id='$id'");
+                header("Location: main.php");
+            }
+        } else {
+            $result = mysqli_query($conn, "UPDATE murid SET name='$name',username='$username',password='$password' WHERE id='$id'");
+        }
+
         header("Location: main.php");
     }
-}
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
-
-    $result = mysqli_query($conn, "SELECT * FROM murid WHERE id='$id'");
-
-    $user_data = mysqli_fetch_assoc($result);
-
-    $name = $user_data["name"];
-    $username = $user_data["username"];
-    $password = $user_data["password"];
-    $image = $user_data["image"];
 }
 
 if (!isset($_SESSION["user"])) {
@@ -70,7 +96,7 @@ if (!isset($_SESSION["user"])) {
 
             </div>
             <div class="add-form">
-                <form action="edit.php" method="POST">
+                <form action="edit.php" method="POST" enctype="multipart/form-data">
                     <div class="label-input">
                         <label for="name">Name</label>
                         <input type="text" value="<?= $name ?>" name="name" id="name" required>
@@ -83,9 +109,7 @@ if (!isset($_SESSION["user"])) {
                         <label for="password">Password</label>
                         <div style="position: relative" class="inputsakkarepmu">
 
-                            <input type="password" name="password" id="password" value="<?php if ($_SESSION["access"] == "true") {
-                                                                                            echo $password;
-                                                                                        } ?>" required>
+                            <input type="password" name="password" id="password" required>
                             <img class="showpass" src="assets\eye-off.svg" alt="">
 
                         </div>
@@ -100,12 +124,12 @@ if (!isset($_SESSION["user"])) {
                     <?php endif; ?>
                     <div class="label-input">
                         <label for="image">Image</label>
-                        <input type="file" name="image" id="image">
+                        <input type="file" name="image" id="image" onchange="previewImage()">
 
                     </div>
                     <div class="label-input-img">
 
-                        <img name="image" src="images/<?= $image ?>" alt="">
+                        <img style="width: 256px" class="image-preview" name="image" src="images/<?= $image ?>" alt="">
                     </div>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
@@ -114,6 +138,7 @@ if (!isset($_SESSION["user"])) {
                     </div>
                     <div class="add-buttons">
                         <input type="hidden" name="id" value=<?= $id ?>>
+                        <input type="hidden" name="image" value=<?= $image ?>>
                         <a class="btn btn-secondary" href="main.php">Back</a>
                         <button type="input" name="update" class="btn btn-main">Edit</button>
                     </div>
@@ -129,6 +154,17 @@ if (!isset($_SESSION["user"])) {
             $('.sidebar').toggleClass('open')
 
         });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imagePreview = document.querySelector('.image-preview');
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+            }
+        }
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')

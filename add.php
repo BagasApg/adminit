@@ -8,11 +8,13 @@ if (isset($_POST["submit"])) {
     $allow = array("png", "jpg", "jpeg");
     $file_exploded = explode(".", $filename);
     $extension = end($file_exploded);
+
     $continue = true;
     $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
+
     if ($password != $confirmPassword) {
         $continue = false;
     }
@@ -20,6 +22,7 @@ if (isset($_POST["submit"])) {
 
     if (!empty($name) && !empty($username) && !empty($password) && !empty($confirmPassword) && !empty($filename) && $continue) {
         if (in_array($extension, $allow)) {
+            $password = hash('haval192,4', $password);
             $temp = $_FILES["image"]["tmp_name"];
             $directory = "./images/";
 
@@ -121,7 +124,11 @@ if ($_SESSION["page"] != "Add User") {
                     </div>
                     <div class="label-input">
                         <label for="image">Image</label>
-                        <input type="file" placeholder="<?= $random["image"] ?>" name="image" id="image" class="form-input">
+                        <input type="file" onchange="previewImage()" name="image" id="image" class="form-input">
+                    </div>
+                    <div class="label-input-img">
+
+                        <img style="width: 256px" class="image-preview" name="image" alt="">
                     </div>
                     <div>
                         <p><?php if (isset($_POST['alert'])) {
@@ -146,6 +153,17 @@ if ($_SESSION["page"] != "Add User") {
             $('.sidebar').toggleClass('open')
 
         });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imagePreview = document.querySelector('.image-preview');
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+            }
+        }
 
         function openSidebar() {
             $('.shadow-bg').toggleClass('d-none')

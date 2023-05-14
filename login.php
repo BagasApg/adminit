@@ -4,9 +4,11 @@ require 'config.php';
 
 
 if (isset($_POST["submit"])) {
+    var_dump($_POST["submit"]);
     $continue = true;
     $username = $_POST["username"];
-    $password = $_POST["password"];
+    $password = hash('haval192,4', $_POST["password"]);
+    // dd($password);
 
     if (!empty($username) && !empty($password)) {
         $result = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username' AND password = '$password'");
@@ -17,10 +19,12 @@ if (isset($_POST["submit"])) {
             $_SESSION["firstMessage"] = "true";
             header("Location: main.php");
         } else {
-            $_POST["alert"] = "No account found!";
+            $_SESSION["alert"] = "No account found!";
+            redirect("login.php");
         }
     } else {
-        $_POST["alert"] = "Fill the blank form!";
+        $_SESSION["alert"] = "Fill the blank form!";
+        redirect("login.php");
     }
 } else {
     session_destroy();
@@ -42,8 +46,11 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="login-container" style="margin:0;">
+    <div class="auth-wrapper">
+        <div class="login-container <?php if (isset($_SESSION["request"]) && $_SESSION["request"] != "allow") {
+
+                                        echo "login-register-container";
+                                    } ?>" style="margin:0;">
             <div class="add-header">
                 <h2>Login to Adminit</h2>
                 <p>Organize your team with the best admin control panel!</p>
@@ -67,13 +74,13 @@ if (isset($_POST["submit"])) {
                     </div>
 
                     <div>
-                        <p><?php if (isset($_POST['alert'])) {
-                                echo $_POST['alert'];
+                        <p><?php if (isset($_SESSION['alert'])) {
+                                echo $_SESSION['alert'];
                             } ?></p>
                     </div>
                     <div class="login-buttons">
 
-                        <button style="width: 100%; height: 36px;" type="input" name="submit" class="btn btn-main">Login</button>
+                        <button style="width: 100%; height: 36px;" value="slebew" type="input" name="submit" class="btn btn-main">Login</button>
                         <p style="color: black; font-size:16px; padding: 0" class="register-instead">Don't have account? <a href="register.php">Register now!</a></p>
                     </div>
                 </form>

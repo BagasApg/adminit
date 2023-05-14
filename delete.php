@@ -8,8 +8,10 @@ if (isset($_SESSION["access"]) && $_SESSION["access"] != "true") {
 }
 
 $id = $_GET["id"];
+$query = mysqli_query($conn, "SELECT image FROM murid WHERE id= '$id'");
+$directory = "./images/";
+unlink($directory . mysqli_fetch_object($query)->image);
 
-// dd($_GET["id"]);
 
 $result = mysqli_query($conn, "DELETE FROM murid WHERE id='$id'");
 
