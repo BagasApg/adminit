@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2023 at 11:14 PM
+-- Generation Time: May 14, 2023 at 06:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -39,8 +39,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `access`) VALUES
-(1, 'myadmin', 'admin', 'true'),
-(2, 'lapaksebelah', 'lapak2023', 'false');
+(1, 'myadmin', '342bb4964c81aa2023fb293311fe1e574e017fb4e237f417', 'true'),
+(2, 'lapaksebelah', '5a9461a2f7540a3fb43f0b66c2649cc8422f91d7f045a87b', 'false');
 
 -- --------------------------------------------------------
 
@@ -61,15 +61,10 @@ CREATE TABLE `murid` (
 --
 
 INSERT INTO `murid` (`id`, `name`, `username`, `password`, `image`) VALUES
-(1, 'Bagas Arianto Putra', 'bagasap', 'koronewasap', 'bagas.jpg'),
-(2, 'Achmad Zulfikar El Farrel', 'aqiahh', 'senoks', 'zulfikar.jpg'),
-(3, 'Achmad Satria Maulana', 'memedd', 'yopiss', 'satria.jpg'),
-(4, 'Kinnaras Aryapoetra', 'vretz', 'resiks', 'kinnaras.jpg'),
-(5, 'Faiz Agit Zahiri', 'tompelkun', 'dikitajah', 'faiz.jpg'),
-(37, 'Isyana Yasmin Amadea', 'isynmin', 'memen', 'yasmin.jpg'),
-(38, 'Bintang Shafiqa Adiretnani', 'bontangg', 'bonbon', 'bintang.jpg'),
-(39, 'Achmad Rafif Arya Putra', 'pencuriuwang', 'rapepp', 'rafif.jpg'),
-(40, 'Ivan Syarifudin', 'rewhisp', 'nobita', 'ivan.jpg');
+(53, 'Bagas Arianto Putra', 'bagasap', 'fb5164f890d07634e206a7a3e62475baed99a297b829d238', 'Nilou_Item.png'),
+(54, 'Achmad Zulfikar El Farrel', 'aqiah', 'cc3c9b919075cf88b5defbe7e7c33f17c28b115daa9ce97e', 'Collei_Item.png'),
+(55, 'Achmad Satria Maulana', 'memed', '73e6b8ac8eb60ebfc853758366d5047f8ee1ee7b32aa4beb', 'Hu_Tao_Item.png'),
+(56, 'Kinnaras Aryapoetra', 'vretz', '49fd1ef84ed581caa0b1e594b990d2f36c7a01d0ea242069', 'Ganyu_Item.png');
 
 --
 -- Indexes for dumped tables
@@ -95,13 +90,13 @@ ALTER TABLE `murid`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `murid`
 --
 ALTER TABLE `murid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
